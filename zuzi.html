@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Zuzi</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <main class="mystery">
+            <div class="intro">
+                <p>hey zuzi</p>
+                <h1>fii antena</h1>
+            </div>
+            <div class="message">
+                <p>nu-ti spun ce cauti</p>
+                <p>trebuie sa-ti dai singura seama</p>
+            </div>
+            <button class="start-btn">incepe</button>
+            <section class="riddle" hidden>
+                <span>01</span>
+                <h2>hai sa vedem daca mai tii minte.</h2>
+                <p>ce s-a intamplat cu pissy cand era mica iar tata a pus o frana brusca?</p>
+                <div class="answers">
+                    <button>a ajuns sub canapea</button>
+                    <button>a inceput sa planga</button>
+                    <button>a cerut sa coboare la urmatoarea statie</button>
+                    <button>a aterizat in torpedou</button>
+                </div>
+                <p class="feedback"></p>
+            </section>
+            <section class="riddle-two" hidden>
+                <span>02</span>
+                <h2>urmatoarea intrebare.</h2>
+                <p>care este expresia pe care o folosesc mereu cand iti vreau atentia?</p>
+                <div class="answers">
+                    <button>stai cuminte</button>
+                    <button>AUZI?!?!</button>
+                    <button>asculta aici</button>
+                    <button>ia fii atenta</button>
+                </div>
+                <p class="feedback-two"></p>
+            </section>
+            <section class="riddle-three" hidden>
+                <span>03</span>
+                <h2>inca una. asta e usoara.</h2>
+                <p>cu cati ani esti mai mare decat mine?</p>
+                <div class="answers">
+                    <button>9 ani</button>
+                    <button>10 ani</button>
+                    <button>11 ani</button>
+                    <button>12 ani</button>
+                </div>
+                <p class="feedback-three"></p>
+            </section>
+            <section class="clue" hidden>
+                <span>INDICIU 01</span>
+                <h2>unde ai cauta ceva ce nu trebuie gasit?</h2>
+            </section>
+            <section class="clue-two" hidden>
+                <span>INDICIU 02</span>
+                <h2>ok. acum lasa telefonul.</h2>
+                <p>raspunsul urmator nu mai e aici.</p>
+                <p>trebuie sa te ridici.</p>
+            </section>
+            <section class="clue-three" hidden>
+                <span>INDICIU 03</span>
+                <h2>ok, cred ca ti-ai facut norma de stat aici.</h2>
+                <p>urmatorul indiciu e sus.</p>
+            </section>
+            <button class="next-clue" hidden>continua</button>
+            <section class="final-clue" hidden>
+                <span>ULTIMUL INDICIU</span>
+                <h2>unde ti-ai lasa lucrurile cand vii sus?</h2>
+                <p>nu te complica.</p>
+            </section>
+            <button class="finish-btn" hidden>gata?</button>
+        </main>
+        <script>
+            const startButton = document.querySelector(".start-btn");
+            const riddle = document.querySelector(".riddle");
+            const riddleTwo = document.querySelector(".riddle-two");
+            const riddleThree = document.querySelector(".riddle-three");
+
+            const answersOne = riddle.querySelectorAll(".answers button");
+            const feedbackOne = riddle.querySelector(".feedback");
+
+            const answersTwo = riddleTwo.querySelectorAll(".answers button");
+            const feedbackTwo = riddleTwo.querySelector(".feedback-two");
+
+            const answersThree = riddleThree.querySelectorAll(".answers button");
+            const feedbackThree = riddleThree.querySelector(".feedback-three");
+
+            const clue = document.querySelector(".clue");
+            const clueTwo = document.querySelector(".clue-two");
+
+            const clueThree = document.querySelector(".clue-three");
+            const nextClue = document.querySelector(".next-clue");
+
+            const finalClue = document.querySelector(".final-clue");
+
+            const finishButton = document.querySelector(".finish-btn");
+
+            startButton.addEventListener("click", () => {
+                riddle.hidden = false;
+            });
+
+            answersOne.forEach(button => {
+                button.addEventListener("click", () => {
+                    if (button.textContent === "a ajuns sub canapea") {
+                        feedbackOne.textContent = "corect. n-ai uitat chiar tot. 😂";
+                        riddleTwo.hidden = false;
+                    } else {
+                        feedbackOne.textContent = "mai incearca. chiar ai uitat? 💀";
+                    }
+                });
+            });
+
+            answersTwo.forEach(button => {
+                button.addEventListener("click", () => {
+                    if (button.textContent === "AUZI?!?!") {
+                        feedbackTwo.textContent = "corect. hai ca stii. 👀";
+                        riddleThree.hidden = false;
+                    } else {
+                        feedbackTwo.textContent = "nu. serios, Zuzi? 😂";
+                    }
+                });
+            });
+
+            answersThree.forEach(button => {
+                button.addEventListener("click", () => {
+                    if (button.textContent === "11 ani") {
+                    feedbackThree.textContent = "corect. incepe sa aiba sens. 👀";
+                    clue.hidden = false;
+                    clueTwo.hidden = false;
+                    nextClue.hidden = false;
+                } else { 
+                        feedbackThree.textContent = "mai gandeste-te. 😂";
+                    }
+                });
+            });
+
+            nextClue.addEventListener("click", () => {
+                clueThree.hidden = false;
+                nextClue.hidden = true;
+                finalClue.hidden = false;
+                finishButton.hidden = false;
+            });
+
+            finishButton.addEventListener("click", () => {
+                document.querySelector(".mystery").innerHTML = `
+                    <div class="ending">
+                        <p>ai ajuns pana aici.</p>
+                        <h1>acum du-te sus.</h1>
+                    </div>
+                `;
+            });
+        </script>
+    </body>
+</html>
